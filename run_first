@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+require_relative 'git_utils.rb'
+
+def install_utilities
+  `bundle install`
+end
+
+def configure_remote
+  run_git_command('remote rm jp')
+  run_git_command('remote add jp github:philips-august-2014/prep.git')
+end
+
+def create_first_branches
+  %w[clean master starting_point master codekata starting_point].each{|branch| checkout(branch)}
+end
+
+install_utilities
+configure_remote
+create_first_branches
