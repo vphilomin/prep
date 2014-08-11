@@ -71,6 +71,8 @@
     <Compile Include="collections\MoviePredicate.cs" />
     <Compile Include="collections\MovieLibrary.cs" />
     <Compile Include="collections\NegatingMatch.cs" />
+    <Compile Include="collections\NegatingMatchCreationExtensionPoint.cs" />
+    <Compile Include="collections\NegatingMatchCreationExtensions.cs" />
     <Compile Include="collections\NeverMatches.cs" />
     <Compile Include="collections\ProductionStudio.cs" />
     <Compile Include="collections\ReadOnlySet.cs" />
