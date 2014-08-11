@@ -29,7 +29,7 @@ namespace prep.collections
 
     public IMatchA<ItemToMatch> not_equal_to(AttributeType value)
     {
-      throw new NotImplementedException();
+      return new NegateMatches<ItemToMatch>(equal_to(value));
     }
   }
 }
