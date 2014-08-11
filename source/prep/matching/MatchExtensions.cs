@@ -14,5 +14,12 @@ namespace prep.matching
     {
       return new NegatingMatch<ItemToMatch>(to_negate);
     }
+
+    public static IMatchA<ItemToMatch> and<ItemToMatch>(this IMatchA<ItemToMatch> left,
+      IMatchA<ItemToMatch> right)
+    {
+        return new AndMatch<ItemToMatch>(left, right);
+    }
+
   }
 }

@@ -71,6 +71,7 @@
     <Compile Include="collections\ProductionStudio.cs" />
     <Compile Include="collections\ReadOnlySet.cs" />
     <Compile Include="infrastructure\EnumerableExtensions.cs" />
+    <Compile Include="matching\AndMatch.cs" />
     <Compile Include="matching\ConditionalMatch.cs" />
     <Compile Include="matching\IGetTheValueOfAnAttribute.cs" />
     <Compile Include="matching\IMatchA.cs" />
