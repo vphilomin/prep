@@ -3,15 +3,32 @@ using prep.matching;
 
 namespace prep.collections
 {
-  public class ComparableMatchFactory<ItemToMatch, AttributeType> where AttributeType : IComparable<AttributeType>
+  public class ComparableMatchFactory<ItemToMatch, AttributeType>  : ICreateMatchers<ItemToMatch, AttributeType> 
+    where AttributeType : IComparable<AttributeType>
   {
     IGetTheValueOfAnAttribute<ItemToMatch, AttributeType> accessor;
-      MatchFactory<ItemToMatch, AttributeType> matchFactory;
+    ICreateMatchers<ItemToMatch, AttributeType> match_factory;
 
-      public ComparableMatchFactory(IGetTheValueOfAnAttribute<ItemToMatch, AttributeType> accessor)
+    public ComparableMatchFactory(IGetTheValueOfAnAttribute<ItemToMatch, AttributeType> accessor,
+      ICreateMatchers<ItemToMatch, AttributeType> match_factory)
     {
       this.accessor = accessor;
-          this.matchFactory = new MatchFactory<ItemToMatch, AttributeType>(accessor);
+      this.match_factory = match_factory;
+    }
+
+    public IMatchA<ItemToMatch> equal_to(AttributeType value)
+    {
+      return match_factory.equal_to(value);
+    }
+
+    public IMatchA<ItemToMatch> equal_to_any(params AttributeType[] values)
+    {
+      return match_factory.equal_to_any(values);
+    }
+
+    public IMatchA<ItemToMatch> not_equal_to(AttributeType value)
+    {
+      return match_factory.not_equal_to(value);
     }
 
     public IMatchA<ItemToMatch> greater_than(AttributeType value)
@@ -21,29 +38,13 @@ namespace prep.collections
 
     public IMatchA<ItemToMatch> between(AttributeType start, AttributeType end)
     {
-        return greater_than(start).and(less_than(end));
+      return (greater_than(start).or(equal_to(start))).and(less_than(end).or(equal_to(end)));
     }
 
-      public IMatchA<ItemToMatch> less_than(AttributeType value)
-      {
-          return new ConditionalMatch<ItemToMatch>(x => accessor(x).CompareTo(value) < 0);
-      }
+    public IMatchA<ItemToMatch> less_than(AttributeType value)
+    {
+      return new ConditionalMatch<ItemToMatch>(x => accessor(x).CompareTo(value) < 0);
+    }
 
-      public IMatchA<ItemToMatch> equal_to(AttributeType value)
-      {
-          return matchFactory.equal_to(value);
-      }
-
-      public IMatchA<ItemToMatch> equal_to_any(params AttributeType[] values)
-      {
-          return matchFactory.equal_to_any(values);
-      }
-
-      public IMatchA<ItemToMatch> not_equal_to(AttributeType value)
-      {
-          return matchFactory.not_equal_to(value);
-      }
   }
-
-    
 }

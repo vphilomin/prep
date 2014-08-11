@@ -3,7 +3,7 @@ using prep.matching;
 
 namespace prep.collections
 {
-  public class MatchFactory<ItemToMatch, AttributeType>
+  public class MatchFactory<ItemToMatch, AttributeType> : ICreateMatchers<ItemToMatch, AttributeType>
   {
     IGetTheValueOfAnAttribute<ItemToMatch, AttributeType> accessor;
 
