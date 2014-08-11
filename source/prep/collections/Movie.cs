@@ -50,7 +50,8 @@ namespace prep.collections
 
     public static Predicate<Movie> published_by_pixar_or_disney()
     {
-      throw new NotImplementedException();
+        return movie => published_by(ProductionStudio.Disney).Invoke(movie) ||
+                        published_by(ProductionStudio.Pixar).Invoke(movie);
     }
   }
 }
