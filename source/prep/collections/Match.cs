@@ -17,5 +17,10 @@ namespace prep.collections
       return new ComparableMatchFactory<ItemToMatch, AttributeType>(accessor,
         with_attribute(accessor));
     }
+
+      public static ConditionalMatch<ItemToMatch> CreateConditionalMatch(Predicate<ItemToMatch> predicate)
+      {
+          return new ConditionalMatch<ItemToMatch>(predicate);
+      }
   }
 }

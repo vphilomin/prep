@@ -19,7 +19,7 @@ namespace prep.collections
 
     public IMatchA<ItemToMatch> equal_to_any(params AttributeType[] values)
     {
-      return new ConditionalMatch<ItemToMatch>(x =>
+        return Match<ItemToMatch>.CreateConditionalMatch(x =>
       {
         var value = accessor(x);
         return new List<AttributeType>(values).Contains(value);

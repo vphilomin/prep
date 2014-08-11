@@ -33,7 +33,7 @@ namespace prep.collections
 
     public IMatchA<ItemToMatch> greater_than(AttributeType value)
     {
-      return new ConditionalMatch<ItemToMatch>(x => accessor(x).CompareTo(value) > 0);
+      return Match<ItemToMatch>.CreateConditionalMatch(x => accessor(x).CompareTo(value) > 0);
     }
 
     public IMatchA<ItemToMatch> between(AttributeType start, AttributeType end)
@@ -43,7 +43,7 @@ namespace prep.collections
 
     public IMatchA<ItemToMatch> less_than(AttributeType value)
     {
-      return new ConditionalMatch<ItemToMatch>(x => accessor(x).CompareTo(value) < 0);
+        return Match<ItemToMatch>.CreateConditionalMatch(x => accessor(x).CompareTo(value) < 0);
     }
 
   }
