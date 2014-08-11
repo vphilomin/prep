@@ -1,4 +1,6 @@
-﻿namespace prep.matching
+﻿using prep.collections;
+
+namespace prep.matching
 {
   public static class MatchExtensions
   {
@@ -6,6 +8,11 @@
       IMatchA<ItemToMatch> right)
     {
       return new OrMatch<ItemToMatch>(left, right);
+    }
+
+    public static IMatchA<ItemToMatch> not<ItemToMatch>(this IMatchA<ItemToMatch> to_negate)
+    {
+      return new NegatingMatch<ItemToMatch>(to_negate);
     }
   }
 }

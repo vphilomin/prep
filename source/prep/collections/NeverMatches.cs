@@ -9,19 +9,4 @@ namespace prep.collections
       return false;
     }
   }
-
-    public class NegateMatches<ItemToMatch> : IMatchA<ItemToMatch>
-    {
-        IMatchA<ItemToMatch> matchToNegate;
-
-        public NegateMatches(IMatchA<ItemToMatch> matchToNegate)
-        {
-            this.matchToNegate = matchToNegate;
-        }
-
-        public bool matches(ItemToMatch item)
-        {
-            return !matchToNegate.matches(item);
-        }
-    }
 }
