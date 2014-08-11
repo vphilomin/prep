@@ -14,13 +14,7 @@ namespace prep.collections
     public static ComparableMatchFactory<ItemToMatch, AttributeType>
       with_comparable_attribute<AttributeType>(IGetTheValueOfAnAttribute<ItemToMatch, AttributeType> accessor) where AttributeType : IComparable<AttributeType>
     {
-      return new ComparableMatchFactory<ItemToMatch, AttributeType>(accessor,
-        with_attribute(accessor));
+      return new ComparableMatchFactory<ItemToMatch, AttributeType>(with_attribute(accessor));
     }
-
-      public static ConditionalMatch<ItemToMatch> CreateConditionalMatch(Predicate<ItemToMatch> predicate)
-      {
-          return new ConditionalMatch<ItemToMatch>(predicate);
-      }
   }
 }

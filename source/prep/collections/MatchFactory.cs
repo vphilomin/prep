@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using prep.matching;
 
 namespace prep.collections
@@ -19,11 +20,7 @@ namespace prep.collections
 
     public IMatchA<ItemToMatch> equal_to_any(params AttributeType[] values)
     {
-        return Match<ItemToMatch>.CreateConditionalMatch(x =>
-      {
-        var value = accessor(x);
-        return new List<AttributeType>(values).Contains(value);
-      });
+      return for_value_matcher(new EqualAnyMatch<AttributeType>(values));
     }
 
     public IMatchA<ItemToMatch> not_equal_to(AttributeType value)
@@ -31,5 +28,14 @@ namespace prep.collections
       return equal_to(value).not();
     }
 
+    public IMatchA<ItemToMatch> for_value_matcher(IMatchA<AttributeType> value_condition)
+    {
+      return new AttributeMatch<ItemToMatch, AttributeType>(accessor, value_condition);
+    }
+
+    public IMatchA<ItemToMatch> for_condition(Predicate<ItemToMatch> condition)
+    {
+      return new ConditionalMatch<ItemToMatch>(condition);
+    }
   }
 }

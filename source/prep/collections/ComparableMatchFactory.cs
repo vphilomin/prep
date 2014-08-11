@@ -1,18 +1,16 @@
 ﻿using System;
 using prep.matching;
+using prep.ranges;
 
 namespace prep.collections
 {
   public class ComparableMatchFactory<ItemToMatch, AttributeType>  : ICreateMatchers<ItemToMatch, AttributeType> 
     where AttributeType : IComparable<AttributeType>
   {
-    IGetTheValueOfAnAttribute<ItemToMatch, AttributeType> accessor;
     ICreateMatchers<ItemToMatch, AttributeType> match_factory;
 
-    public ComparableMatchFactory(IGetTheValueOfAnAttribute<ItemToMatch, AttributeType> accessor,
-      ICreateMatchers<ItemToMatch, AttributeType> match_factory)
+    public ComparableMatchFactory(ICreateMatchers<ItemToMatch, AttributeType> match_factory)
     {
-      this.accessor = accessor;
       this.match_factory = match_factory;
     }
 
@@ -31,9 +29,19 @@ namespace prep.collections
       return match_factory.not_equal_to(value);
     }
 
+    public IMatchA<ItemToMatch> falls_in(IContainValues<AttributeType> range)
+    {
+      return for_value_matcher(new FallsIn<AttributeType>(range));
+    }
+
     public IMatchA<ItemToMatch> greater_than(AttributeType value)
     {
-      return Match<ItemToMatch>.CreateConditionalMatch(x => accessor(x).CompareTo(value) > 0);
+      return for_value_matcher(new GreaterThan<AttributeType>(value));
+    }
+
+    public IMatchA<ItemToMatch> less_than(AttributeType value)
+    {
+      return for_value_matcher(new LessThan<AttributeType>(value));
     }
 
     public IMatchA<ItemToMatch> between(AttributeType start, AttributeType end)
@@ -41,10 +49,15 @@ namespace prep.collections
       return (greater_than(start).or(equal_to(start))).and(less_than(end).or(equal_to(end)));
     }
 
-    public IMatchA<ItemToMatch> less_than(AttributeType value)
+
+    public IMatchA<ItemToMatch> for_condition(Predicate<ItemToMatch> condition)
     {
-        return Match<ItemToMatch>.CreateConditionalMatch(x => accessor(x).CompareTo(value) < 0);
+      return match_factory.for_condition(condition);
     }
 
+    public IMatchA<ItemToMatch> for_value_matcher(IMatchA<AttributeType> value_condition)
+    {
+      return match_factory.for_value_matcher(value_condition);
+    }
   }
 }
