@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using prep.infrastructure;
-using prep.matching;
 
 namespace prep.collections
 {
@@ -31,51 +30,6 @@ namespace prep.collections
       return movies.Contains(movie);
     }
 
-    public IEnumerable<Movie> all_movies_published_by_pixar()
-    {
-      return filter(movie => movie.production_studio == ProductionStudio.Pixar);
-    }
-
-    public IEnumerable<Movie> all_movies_published_by_pixar_or_disney()
-    {
-      return
-        filter(
-          movie =>
-            movie.production_studio == ProductionStudio.Pixar ||
-            movie.production_studio == ProductionStudio.Disney);
-    }
-
-    public bool is_pixar_movie(Movie movie)
-    {
-      throw new NotImplementedException();
-    }
-
-    public IEnumerable<Movie> all_movies_not_published_by_pixar()
-    {
-      return filter(movie => movie.production_studio != ProductionStudio.Pixar);
-    }
-
-    public IEnumerable<Movie> all_movies_published_after(int year)
-    {
-      return filter(movie => movie.date_published.Year > year);
-    }
-
-    public IEnumerable<Movie> all_movies_published_between_years(int startingYear, int endingYear)
-    {
-      return
-        filter(movie => movie.date_published.Year >= startingYear && movie.date_published.Year <= endingYear);
-    }
-
-    public IEnumerable<Movie> all_kid_movies()
-    {
-      return filter(movie => movie.genre == Genre.kids);
-    }
-
-    public IEnumerable<Movie> all_action_movies()
-    {
-      return filter(movie => movie.genre == Genre.action);
-    }
-
     public IEnumerable<Movie> sort_all_movies_by_title_descending()
     {
       throw new NotImplementedException();
@@ -99,11 +53,6 @@ namespace prep.collections
     public IEnumerable<Movie> sort_all_movies_by_date_published_ascending()
     {
       throw new NotImplementedException();
-    }
-
-    IEnumerable<Movie> filter(MoviePredicate predicate)
-    {
-      return movies.filter(new ConditionalMatch<Movie>(predicate.Invoke));
     }
   }
 }
