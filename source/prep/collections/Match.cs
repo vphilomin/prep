@@ -2,28 +2,12 @@
 
 namespace prep.collections
 {
-  public class Match<ItemForMatch>
+  public class Match<ItemToMatch>
   {
-    public static AttributeAccessor<ItemForMatch, AttributeType> 
-      with_attribute<AttributeType>(IGetTheValueOfAnAttribute<ItemForMatch, AttributeType> accessor)
+    public static MatchFactory<ItemToMatch, AttributeType>
+      with_attribute<AttributeType>(IGetTheValueOfAnAttribute<ItemToMatch, AttributeType> accessor)
     {
-		return new AttributeAccessor<ItemForMatch, AttributeType>(accessor);
+      return new MatchFactory<ItemToMatch, AttributeType>(accessor);
     }
   }
-
-	public class AttributeAccessor<ItemToRetrieveAttributeFrom, AttributeType>
-	{
-		private IGetTheValueOfAnAttribute<ItemToRetrieveAttributeFrom, AttributeType> accessor;
-
-		public AttributeAccessor(IGetTheValueOfAnAttribute<ItemToRetrieveAttributeFrom, AttributeType> accessor)
-		{
-			this.accessor = accessor;
-		}
-
-		public IMatchA<ItemToRetrieveAttributeFrom> equal_to(AttributeType value)
-		{
-			return new ConditionalSpecification<ItemToRetrieveAttributeFrom>(x => accessor(x).Equals(value));
-		} 
-	}
-
 }
