@@ -16,5 +16,10 @@ namespace prep.collections
     {
       throw new NotImplementedException();
     }
+
+    public IMatchA<ItemToMatch> between(AttributeType start, AttributeType end)
+    {
+      throw new NotImplementedException();
+    }
   }
 }
