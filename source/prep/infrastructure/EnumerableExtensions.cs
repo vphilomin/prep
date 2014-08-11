@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using prep.collections;
+using prep.matching;
 
 namespace prep.infrastructure
 {
@@ -12,13 +12,18 @@ namespace prep.infrastructure
         yield return item;
     }
 
-    public static IEnumerable<T> filter<T>(this IEnumerable<T> items, Predicate<T> predicate)
+    static IEnumerable<T> filter<T>(this IEnumerable<T> items, Predicate<T> predicate)
     {
       foreach (var item in items)
       {
         if (predicate(item))
           yield return item;
       }
+    }
+
+    public static IEnumerable<T> filter<T>(this IEnumerable<T> items, IMatchA<T> specification)
+    {
+      return items.filter(specification.matches);
     }
   }
 }
