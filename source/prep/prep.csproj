@@ -68,6 +68,7 @@
     <Compile Include="collections\ReadOnlySet.cs" />
     <Compile Include="infrastructure\EnumerableExtensions.cs" />
     <Compile Include="matching\ConditionalSpecification.cs" />
+    <Compile Include="matching\IGetTheValueOfAnAttribute.cs" />
     <Compile Include="matching\IMatchA.cs" />
     <Compile Include="matching\MatchExtensions.cs" />
     <Compile Include="matching\OrMatch.cs" />
