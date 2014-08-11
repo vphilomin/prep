@@ -45,7 +45,7 @@ namespace prep.collections
 
     public static Predicate<Movie> in_genre(Genre genre)
     {
-      return x => x.production_studio == ProductionStudio.Pixar;
+      return x => x.genre == genre;
     }
 
     public static Predicate<Movie> published_by_pixar_or_disney()
