@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using prep.matching;
 
 namespace prep.collections
@@ -14,18 +15,21 @@ namespace prep.collections
 
     public IMatchA<ItemToMatch> equal_to(AttributeType value)
     {
-      return new ConditionalSpecification<ItemToMatch>(x => accessor(x).Equals(value));
+      return equal_to_any(value);
     }
 
     public IMatchA<ItemToMatch> equal_to_any(params AttributeType[] values)
     {
-        var match = equal_to(values[0]);
-        for (int i = 1; i < values.Length; i++)
-        {
-            match = new OrMatch<ItemToMatch>(match, equal_to(values[i]));
-        }
+      return new ConditionalSpecification<ItemToMatch>(x =>
+      {
+        var value = accessor(x);
+        return new List<AttributeType>(values).Contains(value);
+      });
+    }
 
-        return match;
+    public IMatchA<ItemToMatch> not_equal_to(AttributeType value)
+    {
+      throw new NotImplementedException();
     }
   }
 }
