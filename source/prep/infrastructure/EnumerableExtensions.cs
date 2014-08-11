@@ -12,7 +12,7 @@ namespace prep.infrastructure
         yield return item;
     }
 
-    static IEnumerable<T> filter<T>(this IEnumerable<T> items, Predicate<T> predicate)
+    public static IEnumerable<T> filter<T>(this IEnumerable<T> items, Predicate<T> predicate)
     {
       foreach (var item in items)
       {

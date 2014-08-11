@@ -103,22 +103,7 @@ namespace prep.collections
 
     IEnumerable<Movie> filter(MoviePredicate predicate)
     {
-      return movies.filter(new MoviePredicateAdaptor(predicate));
+      return movies.filter(new ConditionalSpecification<Movie>(predicate.Invoke));
     }
   }
-
-    public class MoviePredicateAdaptor : IMatchA<Movie>
-    {
-        private MoviePredicate predicate;
-
-        public MoviePredicateAdaptor(MoviePredicate predicate)
-        {
-            this.predicate = predicate;
-        }
-
-        public bool matches(Movie item)
-        {
-            return predicate(item);
-        }
-    }
 }
