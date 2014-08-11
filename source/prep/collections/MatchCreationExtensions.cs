@@ -43,11 +43,6 @@ namespace prep.collections
       return extension_point.for_value_matcher(new GreaterThan<AttributeType>(value));
     }
 
-    public static IMatchA<ItemToMatch> greater_than<ItemToMatch>(this MatchCreationExtensionPoint<ItemToMatch, DateTime> extension_point, int value)
-    {
-        return extension_point.for_value_matcher(new GreaterThanYear(value));
-    }
-
     public static IMatchA<ItemToMatch> less_than<ItemToMatch, AttributeType>(this MatchCreationExtensionPoint<ItemToMatch,AttributeType> extension_point, AttributeType value)
       where AttributeType : IComparable<AttributeType>
     {
@@ -60,19 +55,4 @@ namespace prep.collections
       throw new NotImplementedException();
     }
   }
-
-    public class GreaterThanYear : IMatchA<DateTime>
-    {
-        private readonly int _value;
-
-        public GreaterThanYear(int value)
-        {
-            _value = value;
-        }
-
-        public bool matches(DateTime item)
-        {
-            return item.Year > _value;
-        }
-    }
 }

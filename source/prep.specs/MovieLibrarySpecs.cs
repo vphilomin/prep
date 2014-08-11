@@ -228,7 +228,7 @@ namespace prep.specs
       It should_be_able_to_find_all_movies_not_published_by_pixar = () =>
       {
         var criteria = Match<Movie>.with_attribute(x => x.production_studio)
-          .not_equal_to(ProductionStudio.Pixar);
+          .not.equal_to(ProductionStudio.Pixar);
 
         var results = sut.all_movies().filter(criteria);
 
@@ -237,8 +237,7 @@ namespace prep.specs
 
       It should_be_able_to_find_all_movies_published_after_a_certain_year = () =>
       {
-        var criteria = Match<Movie>.with_attribute(x => x.date_published)
-          .greater_than(2004);
+        var criteria = DateMatchCreationExtensions.greater_than(Match<Movie>.with_attribute(x => x.date_published), 2004);
 
         var results = sut.all_movies().filter(criteria);
 
