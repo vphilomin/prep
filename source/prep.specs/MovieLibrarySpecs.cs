@@ -296,6 +296,7 @@ namespace prep.specs
       It should_be_able_to_sort_all_movies_by_title_descending = () =>
       {
         var comparison = Sort<Movie>.by(x => x.title, SortOrders.descending);
+
         var results = sut.sort_all_movies_by_title_descending();
 
         results.ShouldContainOnlyInOrder(yours_mine_and_ours, theres_something_about_mary, shrek,
