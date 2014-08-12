@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using prep.infrastructure;
-using prep.matching;
+using prep.extensions;
+using prep.matching_core;
 
-namespace prep.collections
+namespace prep.matching
 {
   public class FilteringExtensionPoint<Item, AttributeType> :
     IProvideAccessToMatchCreationExtensions<Item, AttributeType,

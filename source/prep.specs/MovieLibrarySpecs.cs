@@ -5,7 +5,9 @@ using developwithpassion.specifications.extensions;
 using developwithpassion.specifications.rhinomocks;
 using Machine.Specifications;
 using prep.collections;
-using prep.infrastructure;
+using prep.extensions;
+using prep.matching;
+using prep.matching_core;
 using prep.ranges;
 using prep.specs.utility;
 
@@ -296,7 +298,7 @@ namespace prep.specs
       {
         var results = sut.sort_all_movies_by_title_descending();
 
-        results.ShouldContainOnlyInOrder(theres_something_about_mary, yours_mine_and_ours, shrek,
+        results.ShouldContainOnlyInOrder(yours_mine_and_ours, theres_something_about_mary, shrek,
           pirates_of_the_carribean, indiana_jones_and_the_temple_of_doom,
           cars, a_bugs_life);
       };
@@ -306,8 +308,8 @@ namespace prep.specs
         var results = sut.sort_all_movies_by_title_ascending();
 
         results.ShouldContainOnlyInOrder(a_bugs_life, cars, indiana_jones_and_the_temple_of_doom,
-          pirates_of_the_carribean, shrek, yours_mine_and_ours,
-          theres_something_about_mary);
+          pirates_of_the_carribean, shrek,
+          theres_something_about_mary, yours_mine_and_ours);
       };
 
       It should_be_able_to_sort_all_movies_by_date_published_descending = () =>

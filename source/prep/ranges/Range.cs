@@ -1,6 +1,7 @@
 ﻿using System;
 using prep.collections;
 using prep.matching;
+using prep.matching_core;
 
 namespace prep.ranges
 {

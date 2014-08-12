@@ -1,16 +1,17 @@
-﻿using prep.matching;
-
-namespace prep.collections
+﻿namespace prep.matching_core
 {
-  public class MatchCreationExtensionPoint<ItemToMatch, AttributeType> : IProvideAccessToMatchCreationExtensions<ItemToMatch, AttributeType, IMatchA<ItemToMatch>>
+  public class MatchCreationExtensionPoint<ItemToMatch, AttributeType> :
+    IProvideAccessToMatchCreationExtensions<ItemToMatch, AttributeType, IMatchA<ItemToMatch>>
   {
     IGetTheValueOfAnAttribute<ItemToMatch, AttributeType> accessor { get; set; }
 
-    class NegatingMatchCreationExtensionPoint : IProvideAccessToMatchCreationExtensions<ItemToMatch,AttributeType, IMatchA<ItemToMatch>>
+    class NegatingMatchCreationExtensionPoint :
+      IProvideAccessToMatchCreationExtensions<ItemToMatch, AttributeType, IMatchA<ItemToMatch>>
     {
       IProvideAccessToMatchCreationExtensions<ItemToMatch, AttributeType, IMatchA<ItemToMatch>> original;
 
-      public NegatingMatchCreationExtensionPoint(IProvideAccessToMatchCreationExtensions<ItemToMatch, AttributeType, IMatchA<ItemToMatch>> original)
+      public NegatingMatchCreationExtensionPoint(
+        IProvideAccessToMatchCreationExtensions<ItemToMatch, AttributeType, IMatchA<ItemToMatch>> original)
       {
         this.original = original;
       }
@@ -23,10 +24,7 @@ namespace prep.collections
 
     public IProvideAccessToMatchCreationExtensions<ItemToMatch, AttributeType, IMatchA<ItemToMatch>> not
     {
-      get
-      {
-        return new NegatingMatchCreationExtensionPoint(this);
-      }
+      get { return new NegatingMatchCreationExtensionPoint(this); }
     }
 
     public MatchCreationExtensionPoint(IGetTheValueOfAnAttribute<ItemToMatch, AttributeType> accessor)

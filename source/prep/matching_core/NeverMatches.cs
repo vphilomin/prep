@@ -1,6 +1,4 @@
-﻿using prep.matching;
-
-namespace prep.collections
+﻿namespace prep.matching_core
 {
   public class NeverMatches<ItemToMatch> : IMatchA<ItemToMatch>
   {
