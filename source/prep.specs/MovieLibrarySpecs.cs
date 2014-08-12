@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Machine.Specifications;
 using developwithpassion.specifications.extensions;
 using developwithpassion.specifications.rhinomocks;
+using Machine.Specifications;
 using prep.collections;
 using prep.infrastructure;
 using prep.ranges;
@@ -127,6 +127,7 @@ namespace prep.specs
 
       static IEnumerable<Movie> result;
     }
+
     public class when_trying_to_change_the_set_of_movies_returned_by_the_movie_library_to_a_mutable_type :
       movie_library_concern
     {
@@ -219,7 +220,7 @@ namespace prep.specs
       It should_be_able_to_find_all_movies_published_by_pixar_or_disney = () =>
       {
         var criteria = Match<Movie>.with_attribute(x => x.production_studio)
-          .equal_to_any(ProductionStudio.Pixar,ProductionStudio.Disney);
+          .equal_to_any(ProductionStudio.Pixar, ProductionStudio.Disney);
 
         var results = sut.all_movies().filter(criteria);
 
@@ -238,35 +239,30 @@ namespace prep.specs
 
       It should_be_able_to_find_all_movies_published_after_a_certain_year = () =>
       {
-          var range = RangeFactory.start_from(2004);
-          var results = sut.all_movies().where(x => x.date_published.Year).falls_in(range);//.greater_than(2004);
-
+        var range = Range.start_from(2004);
+        var results = sut.all_movies().where(x => x.date_published.Year).falls_in(range); //.greater_than(2004);
 
         results.ShouldContainOnly(yours_mine_and_ours, shrek, theres_something_about_mary);
       };
 
       It should_be_able_to_find_all_movies_published_between_a_certain_range_of_years = () =>
       {
-          var range = RangeFactory.start_from(1982).inclusive.ends_at(2003).inclusive;
+        var range = Range.start_from(1982).inclusive.ends_at(2003).inclusive;
 
-    var results = sut.all_movies().where(x => x.date_published.Year).falls_in(range);
-  //        .between(1982,2003);
-          
+        var results = sut.all_movies().where(x => x.date_published.Year).falls_in(range);
 
         results.ShouldContainOnly(indiana_jones_and_the_temple_of_doom, a_bugs_life, pirates_of_the_carribean);
       };
 
       It should_be_able_to_find_all_movies_published_before_a_certain_year = () =>
       {
-          var range = RangeFactory.ends_at(2002).inclusive;
+        var range = Range.ends_at(2002).inclusive;
 
-          var results = sut.all_movies().where(x => x.date_published.Year).falls_in(range);
-          //        .between(1982,2003);
+        var results = sut.all_movies().where(x => x.date_published.Year).falls_in(range);
+        //        .between(1982,2003);
 
-
-          results.ShouldContainOnly(indiana_jones_and_the_temple_of_doom, a_bugs_life);//, pirates_of_the_carribean);
+        results.ShouldContainOnly(indiana_jones_and_the_temple_of_doom, a_bugs_life); //, pirates_of_the_carribean);
       };
-
 
       It should_be_able_to_find_all_kid_movies = () =>
       {
@@ -301,8 +297,8 @@ namespace prep.specs
         var results = sut.sort_all_movies_by_title_descending();
 
         results.ShouldContainOnlyInOrder(theres_something_about_mary, yours_mine_and_ours, shrek,
-                                         pirates_of_the_carribean, indiana_jones_and_the_temple_of_doom,
-                                         cars, a_bugs_life);
+          pirates_of_the_carribean, indiana_jones_and_the_temple_of_doom,
+          cars, a_bugs_life);
       };
 
       It should_be_able_to_sort_all_movies_by_title_ascending = () =>
@@ -310,8 +306,8 @@ namespace prep.specs
         var results = sut.sort_all_movies_by_title_ascending();
 
         results.ShouldContainOnlyInOrder(a_bugs_life, cars, indiana_jones_and_the_temple_of_doom,
-                                         pirates_of_the_carribean, shrek, yours_mine_and_ours,
-                                         theres_something_about_mary);
+          pirates_of_the_carribean, shrek, yours_mine_and_ours,
+          theres_something_about_mary);
       };
 
       It should_be_able_to_sort_all_movies_by_date_published_descending = () =>
@@ -319,8 +315,8 @@ namespace prep.specs
         var results = sut.sort_all_movies_by_date_published_descending();
 
         results.ShouldContainOnlyInOrder(theres_something_about_mary, shrek, yours_mine_and_ours, cars,
-                                         pirates_of_the_carribean, a_bugs_life,
-                                         indiana_jones_and_the_temple_of_doom);
+          pirates_of_the_carribean, a_bugs_life,
+          indiana_jones_and_the_temple_of_doom);
       };
 
       It should_be_able_to_sort_all_movies_by_date_published_ascending = () =>
@@ -328,8 +324,8 @@ namespace prep.specs
         var results = sut.sort_all_movies_by_date_published_ascending();
 
         results.ShouldContainOnlyInOrder(indiana_jones_and_the_temple_of_doom, a_bugs_life,
-                                         pirates_of_the_carribean, cars, yours_mine_and_ours, shrek,
-                                         theres_something_about_mary);
+          pirates_of_the_carribean, cars, yours_mine_and_ours, shrek,
+          theres_something_about_mary);
       };
 
       It should_be_able_to_sort_all_movies_by_studio_rating_and_year_published = () =>
@@ -348,8 +344,8 @@ namespace prep.specs
                  * Movie classes.*/
 
         results.ShouldContainOnlyInOrder(yours_mine_and_ours, theres_something_about_mary, a_bugs_life, cars, shrek,
-                                         indiana_jones_and_the_temple_of_doom,
-                                         pirates_of_the_carribean);
+          indiana_jones_and_the_temple_of_doom,
+          pirates_of_the_carribean);
       };
     }
 

@@ -85,7 +85,7 @@
     <Compile Include="matching\NegatingMatch.cs" />
     <Compile Include="matching\OrMatch.cs" />
     <Compile Include="ranges\IContainValues.cs" />
-    <Compile Include="ranges\RangeRange.cs" />
+    <Compile Include="ranges\Range.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

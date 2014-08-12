@@ -30,22 +30,19 @@ namespace prep.collections
     public static ReturnType greater_than<ItemToMatch, AttributeType, ReturnType>(this IProvideAccessToMatchCreationExtensions<ItemToMatch,AttributeType, ReturnType> extension_point, AttributeType value)
       where AttributeType : IComparable<AttributeType>
     {
-      return extension_point.for_value_matcher(new GreaterThan<AttributeType>(value));
+      return extension_point.falls_in(Range.start_from(value));
     }
 
     public static ReturnType less_than<ItemToMatch, AttributeType, ReturnType>(this IProvideAccessToMatchCreationExtensions<ItemToMatch,AttributeType, ReturnType> extension_point, AttributeType value)
       where AttributeType : IComparable<AttributeType>
     {
-      return extension_point.for_value_matcher(new LessThan<AttributeType>(value));
+      return extension_point.falls_in(Range.ends_at(value));
     }
 
     public static ReturnType between<ItemToMatch, AttributeType, ReturnType>(this IProvideAccessToMatchCreationExtensions<ItemToMatch,AttributeType, ReturnType> extension_point, AttributeType start, AttributeType end)
       where AttributeType : IComparable<AttributeType>
     {
-      var match = new EqualAnyMatch<AttributeType>(start).or(new GreaterThan<AttributeType>(start)).and(
-        new EqualAnyMatch<AttributeType>(end).or(new LessThan<AttributeType>(end)));
-
-      return extension_point.for_value_matcher(match);
+      return extension_point.falls_in(Range.start_from(start).inclusive.ends_at(end).inclusive);
     }
   }
 }
