@@ -59,7 +59,6 @@
   <ItemGroup>
     <Compile Include="collections\AttributeMatch.cs" />
     <Compile Include="collections\DateMatchCreationExtensions.cs" />
-    <Compile Include="collections\EnumerableExtention.cs" />
     <Compile Include="collections\EqualAnyMatch.cs" />
     <Compile Include="collections\Genre.cs" />
     <Compile Include="collections\IsInGenre.cs" />

@@ -230,8 +230,6 @@ namespace prep.specs
         var criteria = Match<Movie>.with_attribute(x => x.production_studio)
           .not.equal_to(ProductionStudio.Pixar);
 
-        var results = sut.all_movies().filter(criteria);
-
         results.ShouldNotContain(cars, a_bugs_life);
       };
 
