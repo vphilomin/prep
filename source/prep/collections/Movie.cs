@@ -38,21 +38,5 @@ namespace prep.collections
         return hashCode;
       }
     }
-
-    public static IMatchA<Movie> published_by(ProductionStudio studio)
-    {
-      return new IsPublishedBy(studio);
-    }
-
-    public static IMatchA<Movie> in_genre(Genre genre)
-    {
-      return new IsInGenre(genre);
-    }
-
-    public static IMatchA<Movie> published_by_pixar_or_disney()
-    {
-      return published_by(ProductionStudio.Pixar)
-        .or(published_by(ProductionStudio.Disney));
-    }
   }
 }

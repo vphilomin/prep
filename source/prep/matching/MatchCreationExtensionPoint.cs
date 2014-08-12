@@ -1,6 +1,4 @@
-﻿using prep.matching;
-
-namespace prep.collections
+﻿namespace prep.matching
 {
   public class MatchCreationExtensionPoint<ItemToMatch, AttributeType> : IProvideAccessToMatchCreationExtensions<ItemToMatch, AttributeType, IMatchA<ItemToMatch>>
   {

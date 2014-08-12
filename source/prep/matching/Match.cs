@@ -1,6 +1,6 @@
-﻿using prep.matching;
+using prep.collections;
 
-namespace prep.collections
+namespace prep.matching
 {
   public class Match<ItemToMatch>
   {
@@ -8,6 +8,14 @@ namespace prep.collections
       with_attribute<AttributeType>(IGetTheValueOfAnAttribute<ItemToMatch, AttributeType> accessor)
     {
       return new MatchCreationExtensionPoint<ItemToMatch, AttributeType>(accessor);
+    }
+
+    public static ValueMatchCreationExtensionPoint<ItemToMatch> where
+    {
+      get
+      {
+        return new ValueMatchCreationExtensionPoint<ItemToMatch>();
+      }
     }
   }
 }

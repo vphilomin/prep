@@ -5,7 +5,8 @@ using Machine.Specifications;
 using developwithpassion.specifications.extensions;
 using developwithpassion.specifications.rhinomocks;
 using prep.collections;
-using prep.infrastructure;
+using prep.extensions;
+using prep.matching;
 using prep.specs.utility;
 
 /* The following set of Context/Specification pairs are in place to specify the functionality that you need to complete for the MovieLibrary class.
@@ -239,7 +240,6 @@ namespace prep.specs
       {
         var results = sut.all_movies().where(x => x.date_published.Year).greater_than(2004);
 
-
         results.ShouldContainOnly(yours_mine_and_ours, shrek, theres_something_about_mary);
       };
 
@@ -254,6 +254,8 @@ namespace prep.specs
 
       It should_be_able_to_find_all_kid_movies = () =>
       {
+        Match<DateTime>.with_attribute(x => x.Day).equal_to(5);
+
         var criteria = Match<Movie>.with_attribute(x => x.genre)
           .equal_to(Genre.kids);
 

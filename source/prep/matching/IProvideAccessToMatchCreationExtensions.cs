@@ -1,6 +1,4 @@
-﻿using prep.matching;
-
-namespace prep.collections
+﻿namespace prep.matching
 {
   public interface IProvideAccessToMatchCreationExtensions<in ItemToMatch, out AttributeType, out ReturnType>
   {

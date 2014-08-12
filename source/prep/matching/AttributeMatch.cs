@@ -1,6 +1,4 @@
-﻿using prep.matching;
-
-namespace prep.collections
+﻿namespace prep.matching
 {
   public class AttributeMatch<ItemToMatch, AttributeType> : IMatchA<ItemToMatch>
   {
