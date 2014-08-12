@@ -70,9 +70,6 @@
     <Compile Include="collections\Movie.cs" />
     <Compile Include="collections\MoviePredicate.cs" />
     <Compile Include="collections\MovieLibrary.cs" />
-    <Compile Include="collections\NegatingMatch.cs" />
-    <Compile Include="collections\NegatingMatchCreationExtensionPoint.cs" />
-    <Compile Include="collections\NegatingMatchCreationExtensions.cs" />
     <Compile Include="collections\NeverMatches.cs" />
     <Compile Include="collections\ProductionStudio.cs" />
     <Compile Include="collections\ReadOnlySet.cs" />
@@ -83,6 +80,7 @@
     <Compile Include="matching\IGetTheValueOfAnAttribute.cs" />
     <Compile Include="matching\IMatchA.cs" />
     <Compile Include="matching\MatchExtensions.cs" />
+    <Compile Include="matching\NegatingMatch.cs" />
     <Compile Include="matching\OrMatch.cs" />
     <Compile Include="ranges\IContainValues.cs" />
   </ItemGroup>

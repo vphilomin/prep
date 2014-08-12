@@ -237,9 +237,8 @@ namespace prep.specs
 
       It should_be_able_to_find_all_movies_published_after_a_certain_year = () =>
       {
-        var criteria = DateMatchCreationExtensions.greater_than(Match<Movie>.with_attribute(x => x.date_published), 2004);
+        var results = sut.all_movies().where(x => x.date_published).greater_than(2004);
 
-        var results = sut.all_movies().filter(criteria);
 
         results.ShouldContainOnly(yours_mine_and_ours, shrek, theres_something_about_mary);
       };
