@@ -261,7 +261,6 @@ namespace prep.specs
         var range = Range.ends_at(2002).inclusive;
 
         var results = sut.all_movies().where(x => x.date_published.Year).falls_in(range);
-        //        .between(1982,2003);
 
         results.ShouldContainOnly(indiana_jones_and_the_temple_of_doom, a_bugs_life); //, pirates_of_the_carribean);
       };
@@ -296,6 +295,7 @@ namespace prep.specs
 
       It should_be_able_to_sort_all_movies_by_title_descending = () =>
       {
+        var comparison = Sort<Movie>.by(x => x.title, SortOrders.descending);
         var results = sut.sort_all_movies_by_title_descending();
 
         results.ShouldContainOnlyInOrder(yours_mine_and_ours, theres_something_about_mary, shrek,
