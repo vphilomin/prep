@@ -2,31 +2,26 @@
 
 namespace prep.collections
 {
-  public interface IProvideAccessToMatchCreationExtensions<in ItemToMatch, out AttributeType>
-  {
-    IMatchA<ItemToMatch> create_matcher(IMatchA<AttributeType> value_condition);
-  }
-
-  public class MatchCreationExtensionPoint<ItemToMatch, AttributeType> : IProvideAccessToMatchCreationExtensions<ItemToMatch, AttributeType>
+  public class MatchCreationExtensionPoint<ItemToMatch, AttributeType> : IProvideAccessToMatchCreationExtensions<ItemToMatch, AttributeType, IMatchA<ItemToMatch>>
   {
     IGetTheValueOfAnAttribute<ItemToMatch, AttributeType> accessor { get; set; }
 
-    class NegatingMatchCreationExtensionPoint : IProvideAccessToMatchCreationExtensions<ItemToMatch,AttributeType>
+    class NegatingMatchCreationExtensionPoint : IProvideAccessToMatchCreationExtensions<ItemToMatch,AttributeType, IMatchA<ItemToMatch>>
     {
-      IProvideAccessToMatchCreationExtensions<ItemToMatch, AttributeType> original;
+      IProvideAccessToMatchCreationExtensions<ItemToMatch, AttributeType, IMatchA<ItemToMatch>> original;
 
-      public NegatingMatchCreationExtensionPoint(IProvideAccessToMatchCreationExtensions<ItemToMatch, AttributeType> original)
+      public NegatingMatchCreationExtensionPoint(IProvideAccessToMatchCreationExtensions<ItemToMatch, AttributeType, IMatchA<ItemToMatch>> original)
       {
         this.original = original;
       }
 
-      public IMatchA<ItemToMatch> create_matcher(IMatchA<AttributeType> value_condition)
+      public IMatchA<ItemToMatch> create_dsl_result(IMatchA<AttributeType> value_condition)
       {
-        return original.create_matcher(value_condition).not();
+        return original.create_dsl_result(value_condition).not();
       }
     }
 
-    public IProvideAccessToMatchCreationExtensions<ItemToMatch, AttributeType> not
+    public IProvideAccessToMatchCreationExtensions<ItemToMatch, AttributeType, IMatchA<ItemToMatch>> not
     {
       get
       {
@@ -39,7 +34,7 @@ namespace prep.collections
       this.accessor = accessor;
     }
 
-    public IMatchA<ItemToMatch> create_matcher(IMatchA<AttributeType> value_condition)
+    public IMatchA<ItemToMatch> create_dsl_result(IMatchA<AttributeType> value_condition)
     {
       return new AttributeMatch<ItemToMatch, AttributeType>(accessor, value_condition);
     }

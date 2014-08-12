@@ -58,9 +58,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="collections\AttributeMatch.cs" />
-    <Compile Include="collections\DateMatchCreationExtensions.cs" />
     <Compile Include="collections\EqualAnyMatch.cs" />
+    <Compile Include="collections\FilteringExtensionPoint.cs" />
     <Compile Include="collections\Genre.cs" />
+    <Compile Include="collections\IProvideAccessToMatchCreationExtensions.cs" />
     <Compile Include="collections\IsInGenre.cs" />
     <Compile Include="collections\IsPublishedBy.cs" />
     <Compile Include="collections\LessThan.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="infrastructure\EnumerableExtensions.cs" />
     <Compile Include="matching\AndMatch.cs" />
     <Compile Include="matching\ConditionalMatch.cs" />
+    <Compile Include="matching\DateMatchCreationExtensions.cs" />
     <Compile Include="matching\FallsIn.cs" />
     <Compile Include="matching\IGetTheValueOfAnAttribute.cs" />
     <Compile Include="matching\IMatchA.cs" />

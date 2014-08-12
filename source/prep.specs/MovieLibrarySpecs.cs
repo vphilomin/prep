@@ -230,12 +230,14 @@ namespace prep.specs
         var criteria = Match<Movie>.with_attribute(x => x.production_studio)
           .not.equal_to(ProductionStudio.Pixar);
 
+        var results = sut.all_movies().filter(criteria);
+
         results.ShouldNotContain(cars, a_bugs_life);
       };
 
       It should_be_able_to_find_all_movies_published_after_a_certain_year = () =>
       {
-        var results = sut.all_movies().where(x => x.date_published).greater_than(2004);
+        var results = sut.all_movies().where(x => x.date_published.Year).greater_than(2004);
 
 
         results.ShouldContainOnly(yours_mine_and_ours, shrek, theres_something_about_mary);
@@ -243,10 +245,9 @@ namespace prep.specs
 
       It should_be_able_to_find_all_movies_published_between_a_certain_range_of_years = () =>
       {
-        var criteria = Match<Movie>.with_attribute(x => x.date_published.Year)
+        var results = sut.all_movies().where(x => x.date_published.Year)
           .between(1982,2003);
 
-        var results = sut.all_movies().filter(criteria);
 
         results.ShouldContainOnly(indiana_jones_and_the_temple_of_doom, a_bugs_life, pirates_of_the_carribean);
       };
