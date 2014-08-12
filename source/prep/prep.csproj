@@ -63,8 +63,6 @@
     <Compile Include="collections\ProductionStudio.cs" />
     <Compile Include="collections\ReadOnlySet.cs" />
     <Compile Include="extensions\EnumerableExtensions.cs" />
-    <Compile Include="matching\AndMatch.cs" />
-    <Compile Include="matching\AttributeMatch.cs" />
     <Compile Include="matching\ComparableMatchCreationExtensions.cs" />
     <Compile Include="matching\ConditionalMatch.cs" />
     <Compile Include="matching\EqualAnyMatch.cs" />
@@ -72,17 +70,19 @@
     <Compile Include="matching\FilteringExtensionPoint.cs" />
     <Compile Include="matching\GreaterThan.cs" />
     <Compile Include="matching\GreaterThanExtensions.cs" />
-    <Compile Include="matching\IGetTheValueOfAnAttribute.cs" />
-    <Compile Include="matching\IMatchA.cs" />
-    <Compile Include="matching\IProvideAccessToMatchCreationExtensions.cs" />
     <Compile Include="matching\LessThan.cs" />
-    <Compile Include="matching\Match.cs" />
-    <Compile Include="matching\MatchCreationExtensionPoint.cs" />
-    <Compile Include="matching\MatchExtensions.cs" />
-    <Compile Include="matching\NegatingMatch.cs" />
-    <Compile Include="matching\NeverMatches.cs" />
-    <Compile Include="matching\OrMatch.cs" />
-    <Compile Include="matching\ValueMatchCreationExtensionPoint.cs" />
+    <Compile Include="matching_core\AndMatch.cs" />
+    <Compile Include="matching_core\AttributeMatch.cs" />
+    <Compile Include="matching_core\IGetTheValueOfAnAttribute.cs" />
+    <Compile Include="matching_core\IMatchA.cs" />
+    <Compile Include="matching_core\IProvideAccessToMatchCreationExtensions.cs" />
+    <Compile Include="matching_core\Match.cs" />
+    <Compile Include="matching_core\MatchCreationExtensionPoint.cs" />
+    <Compile Include="matching_core\MatchExtensions.cs" />
+    <Compile Include="matching_core\NegatingMatch.cs" />
+    <Compile Include="matching_core\NeverMatches.cs" />
+    <Compile Include="matching_core\OrMatch.cs" />
+    <Compile Include="matching_core\ValueMatchCreationExtensionPoint.cs" />
     <Compile Include="ranges\IContainValues.cs" />
   </ItemGroup>
   <ItemGroup>

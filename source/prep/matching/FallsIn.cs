@@ -1,5 +1,5 @@
 ﻿using System;
-using prep.collections;
+using prep.matching_core;
 using prep.ranges;
 
 namespace prep.matching

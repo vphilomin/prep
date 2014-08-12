@@ -1,6 +1,4 @@
-﻿using prep.collections;
-
-namespace prep.matching
+namespace prep.matching_core
 {
   public static class MatchExtensions
   {
@@ -18,8 +16,7 @@ namespace prep.matching
     public static IMatchA<ItemToMatch> and<ItemToMatch>(this IMatchA<ItemToMatch> left,
       IMatchA<ItemToMatch> right)
     {
-        return new AndMatch<ItemToMatch>(left, right);
+      return new AndMatch<ItemToMatch>(left, right);
     }
-
   }
 }

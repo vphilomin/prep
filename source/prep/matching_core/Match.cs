@@ -1,6 +1,4 @@
-using prep.collections;
-
-namespace prep.matching
+namespace prep.matching_core
 {
   public class Match<ItemToMatch>
   {
@@ -12,10 +10,7 @@ namespace prep.matching
 
     public static ValueMatchCreationExtensionPoint<ItemToMatch> where
     {
-      get
-      {
-        return new ValueMatchCreationExtensionPoint<ItemToMatch>();
-      }
+      get { return new ValueMatchCreationExtensionPoint<ItemToMatch>(); }
     }
   }
 }

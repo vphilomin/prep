@@ -7,6 +7,7 @@ using developwithpassion.specifications.rhinomocks;
 using prep.collections;
 using prep.extensions;
 using prep.matching;
+using prep.matching_core;
 using prep.specs.utility;
 
 /* The following set of Context/Specification pairs are in place to specify the functionality that you need to complete for the MovieLibrary class.
